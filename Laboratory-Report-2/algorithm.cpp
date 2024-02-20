@@ -7,10 +7,12 @@ const char *format_out(int out)
 }
 
 template <class T, int n>
-int is_monotonous(T data)
+int is_monotonous(T* data, double &ms)
 {
   int increase = 0, decrease = 0;
+  int res = 0;
 
+  auto start = std::chrono::high_resolution_clock::now();
   for (int i = 1; i < n; i++)
   {
     if (data[i] > data[i - 1])
@@ -24,20 +26,30 @@ int is_monotonous(T data)
 
     if (increase != 0 && decrease != 0)
     {
-      return 0;
+      auto end = std::chrono::high_resolution_clock::now();
+      std::chrono::duration<double> time_elapsed = end - start;
+      ms = time_elapsed.count() * 1000;
+
+      return res;
     }
   }
 
   if (increase == 0 && decrease == 0)
   {
-    return 0;
+    res = 0;
   }
   else if (increase > 0)
   {
-    return 1;
+    res = 1;
   }
   else
   {
-    return -1;
+    res = -1;
   }
+
+  auto end = std::chrono::high_resolution_clock::now();
+  std::chrono::duration<double> time_elapsed = end - start;
+  ms = time_elapsed.count() * 1000;
+
+  return res;
 }
