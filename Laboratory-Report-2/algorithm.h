@@ -8,8 +8,8 @@ using std::cout;
 using std::endl;
 
 const char *format_out(int out);
-template <class T, int n>
-int is_monotonous(T data, double &ms); 
+template <class T>
+int is_monotonous(T data, int n, double &ms); 
 
 #include "algorithm.cpp"
 
