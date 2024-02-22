@@ -6,13 +6,12 @@ const char *format_out(int out)
                                                : "Монотонно убывает");
 }
 
-template <class T, int n>
-int is_monotonous(T* data, double &ms)
+template <class T>
+int is_monotonous(T *data, int n, double &ms)
 {
-  int increase = 0, decrease = 0;
-  int res = 0;
+  int increase = 0, decrease = 0, res = 0;
+  clock_t start = clock();
 
-  auto start = std::chrono::high_resolution_clock::now();
   for (int i = 1; i < n; i++)
   {
     if (data[i] > data[i - 1])
@@ -26,10 +25,7 @@ int is_monotonous(T* data, double &ms)
 
     if (increase != 0 && decrease != 0)
     {
-      auto end = std::chrono::high_resolution_clock::now();
-      std::chrono::duration<double> time_elapsed = end - start;
-      ms = time_elapsed.count() * 1000;
-
+      ms = clock() - start;
       return res;
     }
   }
@@ -47,9 +43,6 @@ int is_monotonous(T* data, double &ms)
     res = -1;
   }
 
-  auto end = std::chrono::high_resolution_clock::now();
-  std::chrono::duration<double> time_elapsed = end - start;
-  ms = time_elapsed.count() * 1000;
-
+  ms = clock() - start;
   return res;
 }
