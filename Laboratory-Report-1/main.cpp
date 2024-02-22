@@ -1,88 +1,51 @@
 #include <iostream>
+#include <random>
+#include <chrono>
 
+#ifndef RND_MIN
+#define RND_MIN -100
+#endif
+#ifndef RND_MAX
+#define RND_MAX 100
+#endif
+
+using std::cin;
 using std::cout;
 using std::endl;
 
 template <class T, int n>
 int is_monotonous(T data);
+template <class T, int n>
 void test();
+
+std::default_random_engine generator(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 
 int main()
 {
-  test();
+  test<int, 5>();
+  test<int, 10>();
+  test<double, 5>();
+  test<double, 10>();
   return 0;
 }
 
+template <class T, int n>
 void test()
 {
-  int *a;
+  T *arr = new T[n];
+  cout << "Array: " << endl;
+  for (int i = 0; i < n; i++)
+  {
+    std::uniform_real_distribution<double> dist(RND_MIN, RND_MAX);
+    T rand_num = (T)dist(generator);
+    arr[i] = rand_num;
+    cout << arr[i] << " ";
+  }
 
-  a = new int[3]{1,
-                 2,
-                 2};
-  cout << is_monotonous<int *, 3>(a)
-       << endl; // 1
-  delete[] a;
-
-  a = new int[3]{1,
-                 2,
-                 3};
-  cout << is_monotonous<int *, 3>(a)
-       << endl; // 1
-  delete[] a;
-
-  a = new int[3]{2,
-                 2,
-                 2};
-  cout << is_monotonous<int *, 3>(a)
-       << endl; // 0
-  delete[] a;
-
-  a = new int[3]{3,
-                 2,
-                 2};
-  cout << is_monotonous<int *, 3>(a)
-       << endl; // -1
-  delete[] a;
-
-  a = new int[3]{3,
-                 2,
-                 1};
-  cout << is_monotonous<int *, 3>(a)
-       << endl; // -1
-  delete[] a;
-
-  double *b;
-
-  b = new double[5]{
-      1,
-      2.3,
-      2.3,
-      2.4,
-      2.6};
-  cout << is_monotonous<double *, 5>(b)
-       << endl; // 1
-  delete[] b;
-
-  b = new double[5]{
-      1,
-      2.3,
-      2.3,
-      2.2,
-      2.4};
-  cout << is_monotonous<double *, 5>(b)
-       << endl; // 0
-  delete[] b;
-
-  b = new double[5]{
-      3,
-      2.3,
-      2.2,
-      2.1,
-      1.4};
-  cout << is_monotonous<double *, 5>(b)
-       << endl; // -1
-  delete[] b;
+  cout << endl;
+  cout << "Result: ";
+  cout << is_monotonous<T *, 10>(arr) << endl
+       << endl;
 }
 
 template <class T, int n>
