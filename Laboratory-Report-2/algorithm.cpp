@@ -10,7 +10,7 @@ template <class T>
 int is_monotonous(T *data, int n, double &ms)
 {
   int increase = 0, decrease = 0, res = 0;
-  clock_t start = clock();
+  auto start = std::chrono::high_resolution_clock::now();
 
   for (int i = 1; i < n; i++)
   {
@@ -25,7 +25,9 @@ int is_monotonous(T *data, int n, double &ms)
 
     if (increase != 0 && decrease != 0)
     {
-      ms = clock() - start;
+      auto end = std::chrono::high_resolution_clock::now();
+      std::chrono::duration<double> time_elapsed = end - start;
+      ms = time_elapsed.count() * 1000;
       return res;
     }
   }
@@ -43,6 +45,8 @@ int is_monotonous(T *data, int n, double &ms)
     res = -1;
   }
 
-  ms = clock() - start;
+  auto end = std::chrono::high_resolution_clock::now();
+  std::chrono::duration<double> time_elapsed = end - start;
+  ms = time_elapsed.count() * 1000;
   return res;
 }
