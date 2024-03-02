@@ -3,7 +3,7 @@
     {
       "type": "cppbuild",
       "label": "C/C++: g++.exe build active file",
-      "command": "C:\\Users\\chxru\\AppData\\Local\\Programs\\gcc\\bin\\g++.exe",
+      "command": "D:\\Data\\gcc\\bin\\g++.exe",
       "args": [
         "-fdiagnostics-color=always",
         "-g",

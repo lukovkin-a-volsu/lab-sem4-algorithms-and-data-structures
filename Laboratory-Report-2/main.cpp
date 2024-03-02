@@ -101,7 +101,7 @@ void auto_test(ofstream &out)
     for (int n : n_arr)
     {
         test<T>(times, n, avg_ms);
-        cout << n << ";" << avg_ms << endl;
+        cout << "N: " << n << "; T: " << avg_ms << " ms." << endl;
         out << n << ";" << avg_ms << endl;
     }
 }
