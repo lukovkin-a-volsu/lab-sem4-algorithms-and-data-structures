@@ -15,7 +15,6 @@ directory_path = sys.argv[1]
 # Получаем список всех файлов с расширением .txt в указанной директории
 txt_files = glob.glob(os.path.join(directory_path, '*.txt'))
 
-
 fig, ax = plt.subplots()
 
 legends = []
