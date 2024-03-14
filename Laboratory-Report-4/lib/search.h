@@ -115,7 +115,8 @@ int interpolation_search(T *arr, size_t n, T key)
         if (arr[l] == arr[r])
             break;
 
-        m = l + ((key - arr[l]) * (r - l)) / (arr[r] - arr[l]);
+        // m = l + ((key - arr[l]) * (r - l)) / (arr[r] - arr[l]);
+        m = l + (((double)(r - l) / (arr[r] - arr[l])) * (key - arr[l]));
         T value = arr[m];
 
         if (value > key)

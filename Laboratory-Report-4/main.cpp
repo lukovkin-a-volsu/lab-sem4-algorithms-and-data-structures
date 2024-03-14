@@ -64,15 +64,15 @@ bool menu()
 	cout << "4." << endl;
 	// length of testing arrays
 	size_t len = 5;
-	size_t n_arr[]{1000, 2000, 3000, 5000, 10000};
-	auto_test<int>("linear_int.txt", n_arr, len, linear_search<int>, false);
-	auto_test<double>("linear_double.txt", n_arr, len, linear_search<double>, false);
-	auto_test<int>("binary_int.txt", n_arr, len, binary_search<int>, true);
-	auto_test<double>("binary_double.txt", n_arr, len, binary_search<double>, true);
-	auto_test<int>("fibonacci_int.txt", n_arr, len, fibonacci_search<int>, true);
-	auto_test<double>("fibonacci_double.txt", n_arr, len, fibonacci_search<double>, true);
-	auto_test<int>("interpolation_int.txt", n_arr, len, interpolation_search<int>, true);
-	auto_test<double>("interpolation_double.txt", n_arr, len, interpolation_search<double>, true);
+	size_t n_arr[]{100, 1000, 2000, 3000, 5000};
+	// auto_test<int>("linear_int.txt", n_arr, len, linear_search<int>, false);
+	// auto_test<double>("linear_double.txt", n_arr, len, linear_search<double>, false);
+	// auto_test<int>("binary_int.txt", n_arr, len, binary_search<int>, true);
+	// auto_test<double>("binary_double.txt", n_arr, len, binary_search<double>, true);
+	// auto_test<int>("fibonacci_int.txt", n_arr, len, fibonacci_search<int>, true);
+	// auto_test<double>("fibonacci_double.txt", n_arr, len, fibonacci_search<double>, true);
+	// auto_test<int>("interpolation_int.txt", n_arr, len, interpolation_search<int>, true);
+	// auto_test<double>("interpolation_double.txt", n_arr, len, interpolation_search<double>, true);
 
 	string response;
 	cout << endl
