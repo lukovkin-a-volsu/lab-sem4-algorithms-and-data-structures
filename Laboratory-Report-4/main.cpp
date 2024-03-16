@@ -38,26 +38,26 @@ bool menu()
 	Student s_key;
 	double ms;
 
-	cout << "1. and 2." << endl;
-	cout << "Input array size: ";
-	cin >> n;
-	arr = rand_arr<int>(n);
-	cout << "Array: " << endl;
-	out_arr(arr, n);
-	cout << "Input key: ";
-	cin >> key;
-	search_test(arr, n, key);
+	// cout << "1. and 2." << endl;
+	// cout << "Input array size: ";
+	// cin >> n;
+	// arr = rand_arr<int>(n);
+	// cout << "Array: " << endl;
+	// out_arr(arr, n);
+	// cout << "Input key: ";
+	// cin >> key;
+	// search_test(arr, n, key);
 
-	cout << "3." << endl;
-	cout << "Input array size: ";
-	cin >> n;
-	s_arr = Student::get_rand_student_array(n);
-	cout << "Array: " << endl;
-	out_arr(s_arr, n);
-	cout << "Input key (group): ";
-	cin >> s_group;
-	s_key = Student(s_group);
-	search_test(s_arr, n, s_key);
+	// cout << "3." << endl;
+	// cout << "Input array size: ";
+	// cin >> n;
+	// s_arr = Student::get_rand_student_array(n);
+	// cout << "Array: " << endl;
+	// out_arr(s_arr, n);
+	// cout << "Input key (group): ";
+	// cin >> s_group;
+	// s_key = Student(s_group);
+	// search_test(s_arr, n, s_key);
 
 	getch();
 	
@@ -65,13 +65,13 @@ bool menu()
 	// length of testing arrays
 	size_t len = 5;
 	size_t n_arr[]{100, 1000, 2000, 3000, 5000};
-	// auto_test<int>("linear_int.txt", n_arr, len, linear_search<int>, false);
+	auto_test<int>("linear_int.txt", n_arr, len, linear_search<int>, false);
 	// auto_test<double>("linear_double.txt", n_arr, len, linear_search<double>, false);
-	// auto_test<int>("binary_int.txt", n_arr, len, binary_search<int>, true);
+	auto_test<int>("binary_int.txt", n_arr, len, binary_search<int>, true);
 	// auto_test<double>("binary_double.txt", n_arr, len, binary_search<double>, true);
-	// auto_test<int>("fibonacci_int.txt", n_arr, len, fibonacci_search<int>, true);
+	auto_test<int>("fibonacci_int.txt", n_arr, len, fibonacci_search<int>, true);
 	// auto_test<double>("fibonacci_double.txt", n_arr, len, fibonacci_search<double>, true);
-	// auto_test<int>("interpolation_int.txt", n_arr, len, interpolation_search<int>, true);
+	auto_test<int>("interpolation_int.txt", n_arr, len, interpolation_search<int>, true);
 	// auto_test<double>("interpolation_double.txt", n_arr, len, interpolation_search<double>, true);
 
 	string response;

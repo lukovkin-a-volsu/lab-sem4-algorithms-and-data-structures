@@ -24,7 +24,7 @@ void auto_test(string filename, size_t n_arr[], size_t len, search_function<T> f
     ofstream out(filename);
 
     double avg_ms;
-    int times = 100;
+    int times = 500;
 
     cout << filename << endl;
     for (size_t i = 0; i < len; i++)
@@ -43,6 +43,7 @@ template <class T>
 void test(int times, size_t n, search_function<T> f, bool is_sorted, double &avg_ms)
 {
     avg_ms = 0;
+    double total_duration = 0;
     for (size_t i = 0; i < times; i++)
     {
         double ms = 0;
@@ -54,14 +55,13 @@ void test(int times, size_t n, search_function<T> f, bool is_sorted, double &avg
         {
             cocktail_sort(arr, n);
         }
-        auto start = std::chrono::high_resolution_clock::now();
+        auto start_time = std::chrono::high_resolution_clock::now();
         f(arr, n, key);
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> time_elapsed = end - start;
-        ms = time_elapsed.count() / 1000;
-        avg_ms += ms;
+        auto end_time = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+        total_duration += duration;
     }
-    avg_ms /= times;
+    avg_ms = total_duration / (times * 1e6);
 }
 
 #endif // TIMER_H
