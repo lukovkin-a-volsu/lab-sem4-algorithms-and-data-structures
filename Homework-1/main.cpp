@@ -1,16 +1,32 @@
 #include <iostream>
 
 #include "lib/hashtable.h"
+#include "lib/timer.h"
 
 using std::cout;
 using std::endl;
 
 int main() {
-  HashTable<int, int> table;
+  HashTable<int, int> ht;
+  ht.Add(3, 10);
+  ht.Add(3, 16);
+  ht.Add(21, 96);  // collision
+  ht.Add(4, 11);
+  cout << ht.Get(3)->value_ << endl;
+  cout << ht.Get(21)->value_ << endl;
 
-  for (int i = 0; i < 135; i++) {
-    table.Add(i, 2 * i - i % 6);
-    // cout << "New item: " << i + 1 << " " << 2 * i - i % 6 << endl;
+  ht.Rem(4);
+
+  auto found = ht.Get(4);
+  if (found != nullptr) {
+    cout << found->value_;
+  } else {
+    cout << "Item doesn't exist" << endl;
   }
+  
+  // or testing:
+  // Timer timer;
+  // timer.Test();
+
   return 0;
 }

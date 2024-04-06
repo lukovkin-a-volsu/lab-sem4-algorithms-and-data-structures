@@ -1,9 +1,5 @@
 #include "hashtable.h"
 
-// debugging
-using std::cout;
-using std::endl;
-
 template <class K, class V>
 HashTable<K, V>::HashTable() : size_(CAPACITY), count_(0) {
   table_ = new Item<K, V>*[CAPACITY];
@@ -34,28 +30,10 @@ HashTable<K, V>::~HashTable() {
 
 template <class K, class V>
 hcode HashTable<K, V>::HashCode(const K& key) const {
-  // if (is_class<V>::key) {
-  //   // T is a class instance
-  //   cout << "Class instance " << endl;
-  //   return key.HashCode();
-  // } else {
-  //   // T is a primitive data type
-  //   cout << "Primitive type " << endl;
-  //   return std::hash<K>{}(key);
-  // }
   hcode res;
 
   if (typeid(K) == typeid(int)) {
-    // SumDigits
-    {
-      int sum = 0;
-      K number(key);
-      while (number != 0) {
-        sum += number % 10;
-        number /= 10;
-      }
-      res = sum % size_;
-    }
+    res = key % size_;
   } else {
     throw runtime_error("Unsupported type");
   }
@@ -101,16 +79,6 @@ void HashTable<K, V>::Rehashing() {
 }
 
 template <class K, class V>
-void HashTable<K, V>::HandleCollision(Item<K, V>*& new_item) {
-  // handling using linked list
-  Item<K, V>* current = table_[new_item->key];
-  while (current.next != nullptr) {
-    current = current->next;
-  }
-  current->next = new_item;
-}
-
-template <class K, class V>
 void HashTable<K, V>::Add(const K& key, const V& value) {
   // Steps:
   //  1. Calculate hash code
@@ -118,13 +86,8 @@ void HashTable<K, V>::Add(const K& key, const V& value) {
   //  3. Place item
   //  4. Escape from collision
 
-  // Rehashing before performing hashcode
-  // count_ always return number of last element
-  if (count_ >= size_) {
-    Rehashing();
-  }
   hcode index = HashCode(key);
-  Item<K, V>* new_item = new Item(key, value);
+  Item<K, V>* new_item = new Item<K, V>(key, value);
   // cout << "Hashcode: " << index << endl;
   if (table_[index] == nullptr) {
     table_[index] = new_item;
@@ -137,6 +100,11 @@ void HashTable<K, V>::Add(const K& key, const V& value) {
     tmp->next_ = new_item;
   }
   count_++;
+
+  if (count_ >= size_) {
+    // cout << count_ << " " << size_ << endl;
+    Rehashing();
+  }
 }
 
 template <class K, class V>

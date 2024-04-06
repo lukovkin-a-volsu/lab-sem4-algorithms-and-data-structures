@@ -22,9 +22,11 @@ using std::size_t;
 template <class K, class V>
 class HashTable {
  private:
+  // table capacity
   size_t size_;
+  // elements count
   size_t count_;
-  // table with elements of type V or HashTable (when collision)
+  // table
   Item<K, V>** table_;
 
   /**
@@ -40,14 +42,6 @@ class HashTable {
    * return           Void
    */
   void Rehashing();
-
-  /**
-   * Handle collision using linked list
-   * Item*& new_item  New hashtable element
-   * return           Void
-   */
-  void HandleCollision(Item<K, V>*& new_item);
-
  public:
   HashTable();
   HashTable(size_t capacity);
