@@ -8,7 +8,7 @@ using std::function;
 using std::string;
 
 // using search_function = function<int(const string *, size_t, const string &)>;
-using lambda = function<void()> &;
+using lambda = void (*)(T*&, size_t);
 
 template<class T>
 using search_function = std::function<int(T*, size_t, T)>;
