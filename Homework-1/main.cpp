@@ -11,9 +11,11 @@ int main() {
   ht.Add(3, 10);
   ht.Add(3, 16);
   ht.Add(21, 96);  // collision
+  ht.Add(12, 333);  // collision
   ht.Add(4, 11);
   cout << ht.Get(3)->value_ << endl;
   cout << ht.Get(21)->value_ << endl;
+  cout << ht.Get(12)->value_ << endl;
 
   ht.Rem(4);
 
