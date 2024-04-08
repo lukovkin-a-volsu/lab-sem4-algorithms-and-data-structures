@@ -8,11 +8,11 @@
 
 #include "hashtable.h"
 
+using std::cout;
+using std::endl;
 using std::ofstream;
 using std::size_t;
 using std::string;
-using std::cout;
-using std::endl;
 
 class Timer {
   size_t min_, max_, n_, times_;
@@ -46,7 +46,7 @@ class Timer {
         total_duration += duration;
       }
       // avg = total_duration / (times_ * 1e6); // in ms
-      avg = total_duration / times_; // in ns
+      avg = total_duration / times_;  // in ns
       out1 << i + 1 << ";" << avg << endl;
     }
     out1.close();
@@ -66,7 +66,7 @@ class Timer {
         total_duration += duration;
       }
       // avg = total_duration / (times_ * 1e6); // in ms
-      avg = total_duration / times_; // in ns
+      avg = total_duration / times_;  // in ns
       out2 << i + 1 << ";" << avg << endl;
     }
     out2.close();
