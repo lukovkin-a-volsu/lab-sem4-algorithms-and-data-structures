@@ -93,11 +93,16 @@ void HashTable<K, V>::Add(const K& key, const V& value) {
     table_[index] = new_item;
   } else {
     // collision
-    Item<K, V>* tmp = table_[index];
-    while (tmp->next_ != nullptr) {
-      tmp = tmp->next_;
-    }
-    tmp->next_ = new_item;
+    // O(1)
+    new_item->next_ = table_[index]->next_;
+    table_[index]->next_ = new_item;
+
+    // O(N)
+    // Item<K, V>* tmp = table_[index];
+    // while (tmp->next_ != nullptr) {
+    //   tmp = tmp->next_;
+    // }
+    // tmp->next_ = new_item;
   }
   count_++;
 
